@@ -1,0 +1,74 @@
+{
+    "info": {
+        "version": "0.0.1",
+        "title": "Hello World App"
+    },
+    "paths": {
+        "/swagger": {
+            "x-swagger-pipe": "swagger_raw"
+        },
+        "/hello": {
+            "x-swagger-router-controller": "hello_world",
+            "get": {
+                "operationId": "hello",
+                "responses": {
+                    "default": {
+                        "description": "Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/HelloWorldResponse"
+                        }
+                    }
+                },
+                "parameters": [{
+                    "required": false,
+                    "type": "string",
+                    "description": "The name of the person to whom to say hello",
+                    "in": "query",
+                    "name": "name"
+                }],
+                "description": "Returns 'Hello' to the caller"
+            }
+        }
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "basePath": "/",
+    "host": "localhost:10010",
+    "definitions": {
+        "HelloWorldResponse": {
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "ErrorResponse": {
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "swagger": "2.0",
+    "consumes": [
+        "application/json"
+    ]
+}
